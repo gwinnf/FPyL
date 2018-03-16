@@ -56,7 +56,10 @@ for player in result:
     row = []
     row.append(player['name'])
     for gameweek in headers[1:]:
-        row.append(player[gameweek])
+        try:
+            row.append(player[gameweek])
+        except:                     # for blank gameweek
+            row.append("")
     data.append(row)
 
 table = terminaltables.SingleTable(data, title=colorama.Back.WHITE + colorama.Fore.BLACK + 'Upcoming Fixtures' + colorama.Style.RESET_ALL)
